@@ -26,8 +26,37 @@ void boot (Arch::Terminal *terminal, Arch::Cpu *cpu)
 
 void interrupt (const Arch::InterruptCode interrupt)
 {
+	switch (interrupt)
+	{
+		case (Keyboard):
+			int key_pressed = read_typed_char();
+			
+			if(is_backspace(key_pressed) == true){
+				std::cout << _SPACE;
+			}
+			else if(is_alpha(key_pressed) == true){
+				std::cout << static_cast<char>(key_pressed);
 
+			}
+			else if(is_num(key_pressed) == true){
+				std::cout << static_cast<char>(key_pressed);
+			}
+			else if (is_return(key_pressed) == true){
+				std::cout << std::endl; 
+
+			}	
+			break;
+		case (Timer):
+
+		case(GPF):
+		default:
+			break;
+	}
 }
+	//parar de rodar o terminal
+	// mostrar ao usuário 
+	
+	// algum momento vou ter de mostrar o que o usuário está digita}
 
 // ---------------------------------------
 
